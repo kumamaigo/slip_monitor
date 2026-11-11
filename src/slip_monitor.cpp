@@ -29,7 +29,7 @@ public:
     slip_pub_ = this->create_publisher<std_msgs::msg::Float64MultiArray>("/slip_monitor/slip", 10);
 
     rclcpp::QoS can_qos(rclcpp::KeepLast(2));
-    can_qos.reliability(rclcpp::ReliabilityPolicy::BestEffort);
+    can_qos.best_effort();
 
     can_sub_ = this->create_subscription<can_msgs::msg::Frame>(
         "/aiformula_sensing/vehicle_info", can_qos,

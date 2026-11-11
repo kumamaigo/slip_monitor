@@ -36,7 +36,7 @@ public:
         "/aiformula_control/twist_mux/cmd_vel", 10);
 
     rclcpp::QoS qos_profile(rclcpp::KeepLast(1));
-    qos_profile.reliability(rclcpp::ReliabilityPolicy::BestEffort);
+    qos_profile.best_effort();
 
     drive_odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
         "/aiformula_sensing/gyro_odometry_publisher/odom", qos_profile,
