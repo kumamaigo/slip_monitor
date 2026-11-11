@@ -1,0 +1,8 @@
+build/
+install/
+log/
+*.csv
+*.png
+.vscode/
+.idea/
+.DS_Store
