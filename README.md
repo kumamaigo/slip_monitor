@@ -19,7 +19,7 @@ ROS 2 環境における**車輪スリップ率のリアルタイム監視・CSV
 
 ## 実行方法
 
-本コードは以下の4つターミナルを用いて行う
+本コードは以下の4つターミナルを用いて行う(2,3はpanda_wsで実行を行う)
 1. **`bash step1.sh` : 
 2. **`ros2 run encoder_driver encoder_driver_node` (C++)**: 
 3. **`ros2 run slip_monitor slip_monitor_node` (Python)**:
