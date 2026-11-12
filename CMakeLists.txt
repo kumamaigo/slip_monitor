@@ -16,9 +16,9 @@ find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
-add_executable(slip_monitor_node src/slip_monitor.cpp)
-ament_target_dependencies(
-  slip_monitor_node
+# 1. slip_monitor_node のビルド設定
+add_executable(slip_monitor_node src/slip_monitor_node.cpp)
+ament_target_dependencies(slip_monitor_node
   rclcpp
   can_msgs
   nav_msgs
@@ -26,27 +26,32 @@ ament_target_dependencies(
   std_msgs
 )
 
+# 2. detection_node のビルド設定
 add_executable(detection_node src/detection_node.cpp)
-ament_target_dependencies(
-  detection_node
+ament_target_dependencies(detection_node
   rclcpp
+  can_msgs
   nav_msgs
   geometry_msgs
+  std_msgs
 )
 
+# 実行ファイルのインストール先（lib/slip_monitor/ に配置）
 install(TARGETS
   slip_monitor_node
   detection_node
-  DESTINATION lib/
+  DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch
-  DESTINATION share/
+# launch ファイルと Python スクリプトのインストール
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 install(PROGRAMS
   scripts/plot_slip.py
-  DESTINATION lib/
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
