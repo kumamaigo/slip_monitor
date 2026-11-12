@@ -17,7 +17,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # 1. slip_monitor_node のビルド設定
-add_executable(slip_monitor_node src/slip_monitor_node.cpp)
+add_executable(slip_monitor_node src/slip_monitor.cpp)
 ament_target_dependencies(slip_monitor_node
   rclcpp
   can_msgs
