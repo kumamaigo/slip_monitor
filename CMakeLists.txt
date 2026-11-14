@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 project(slip_monitor)
 
 if(NOT CMAKE_CXX_STANDARD)
@@ -14,6 +14,7 @@ find_package(rclcpp REQUIRED)
 find_package(can_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # 1. slip_monitor_node のビルド設定
@@ -23,6 +24,7 @@ ament_target_dependencies(slip_monitor_node
   can_msgs
   nav_msgs
   geometry_msgs
+  sensor_msgs
   std_msgs
 )
 
@@ -40,16 +42,11 @@ ament_target_dependencies(detection_node
 add_executable(moving_node src/moving_node.cpp)
 ament_target_dependencies(moving_node rclcpp geometry_msgs nav_msgs)
 
-install(TARGETS
-  slip_monitor_node
-  moving_node
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 # 実行ファイルのインストール先（lib/slip_monitor/ に配置）
 install(TARGETS
   slip_monitor_node
   detection_node
+  moving_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
