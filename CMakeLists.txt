@@ -36,6 +36,16 @@ ament_target_dependencies(detection_node
   std_msgs
 )
 
+# 3. moving_nodeのビルド設定
+add_executable(moving_node src/moving_node.cpp)
+ament_target_dependencies(moving_node rclcpp geometry_msgs nav_msgs)
+
+install(TARGETS
+  slip_monitor_node
+  moving_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # 実行ファイルのインストール先（lib/slip_monitor/ に配置）
 install(TARGETS
   slip_monitor_node
